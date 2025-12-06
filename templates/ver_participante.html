@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detalhes do Participante</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container my-4">
+  <h1 class="h5 mb-3">Detalhes do Participante</h1>
+  <div class="card mb-3">
+    <div class="card-header fw-bold">Identificação</div>
+    <div class="card-body">
+      <p><strong>Nome completo:</strong> {{ participante[1] }}</p>
+      <p><strong>Apelido:</strong> {{ participante[2] }}</p>
+      <p><strong>Sexo:</strong> {{ participante[3] }}</p>
+      <p><strong>Data de nascimento:</strong> {{ participante[4] }}</p>
+      <p><strong>Nacionalidade:</strong> {{ participante[5] }}</p>
+      <p><strong>Naturalidade:</strong> {{ participante[6] }}</p>
+      <p><strong>Identidade:</strong> {{ participante[7] }}</p>
+      <p><strong>Órgão expedidor:</strong> {{ participante[8] }}</p>
+      <p><strong>CPF:</strong> {{ participante[9] }}</p>
+      <p><strong>Pai:</strong> {{ participante[10] }}</p>
+      <p><strong>Mãe:</strong> {{ participante[11] }}</p>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-header fw-bold">Endereço</div>
+    <div class="card-body">
+      <p><strong>Endereço:</strong> {{ participante[12] }}</p>
+      <p><strong>Número:</strong> {{ participante[13] }}</p>
+      <p><strong>Complemento:</strong> {{ participante[14] }}</p>
+      <p><strong>Bairro:</strong> {{ participante[15] }}</p>
+      <p><strong>CEP:</strong> {{ participante[16] }}</p>
+      <p><strong>Município:</strong> {{ participante[17] }}</p>
+      <p><strong>UF:</strong> {{ participante[18] }}</p>
+      <p><strong>Telefone:</strong> {{ participante[19] }}</p>
+      <p><strong>E-mail:</strong> {{ participante[20] }}</p>
+    </div>
+  </div>
+  <div class="card mb-3">
+    <div class="card-header fw-bold">Documentos</div>
+    <div class="card-body d-flex gap-3">
+      {% if participante[21] %}
+<div>
+  <p><strong>Foto:</strong></p>
+  <img src="{{ url_for('imagem', tabela=tabela, campo='foto', id_pessoa=participante[0]) }}"
+     class="img-thumbnail" width="150">
+</div>
+{% endif %}
+
+      {% if participante[22] %}
+<div>
+  <p><strong>Autorização:</strong></p>
+  <a href="{{ url_for('imagem', tabela=tabela, campo='autorizacao', id_pessoa=participante[0]) }}" target="_blank">Ver PDF</a>
+</div>
+{% endif %}
+
+      {% if participante[23] %}
+<div>
+  <p><strong>Exame médico:</strong></p>
+  <a href="{{ url_for('imagem', tabela=tabela, campo='exame_medico', id_pessoa=participante[0]) }}" target="_blank">Ver PDF</a>
+</div>
+{% endif %}
+
+    </div>
+  </div>
+
+  <a href="{{ url_for('index') }}" class="btn btn-secondary">Voltar</a>
+</div>
+</body>
+</html>
