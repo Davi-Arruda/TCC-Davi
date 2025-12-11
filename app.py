@@ -407,10 +407,9 @@ def deletar_espera(id_espera):
         cursor.execute('DELETE FROM lista_espera WHERE id_espera=%s;', (id_espera,))
         banco.commit()
         return redirect(url_for('lista_espera'))
-    except Exception as erro:
+    except:
         banco.rollback()
-        print('\n❌ ERRO AO EXCLUIR:', erro)
-        return 'Erro ao excluir registro', 400
+        banco.close()
 
 
 @app.route('/adicionar_lista/<int:id_espera>', methods=['GET'])
@@ -422,7 +421,7 @@ def adicionar_lista(id_espera):
         participante = cursor.fetchone()
         if not participante:
             banco.close()
-            return 'Participante não encontrado', 404
+            return 'Participante não encontrado'
         cursor.execute("""
             INSERT INTO lista_atleta (
                 nome_completo, apelido, sexo, data_nascimento, nacionalidade,
@@ -500,7 +499,7 @@ def ver_participante(tabela, id):
     banco = ligar_banco()
     cursor = banco.cursor()
     if tabela not in ('lista_atleta', 'lista_espera'):
-        return 'Tabela inválida', 400
+        return 'Tabela inválida'
     cursor.execute(f"""
         SELECT *
         FROM {tabela}
@@ -509,7 +508,7 @@ def ver_participante(tabela, id):
     participante = cursor.fetchone()
     banco.close()
     if not participante:
-        return 'Participante não encontrado', 404
+        return 'Participante não encontrado'
     return render_template('ver_participante.html', participante=participante, tabela=tabela)
 
 
