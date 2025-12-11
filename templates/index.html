@@ -41,7 +41,7 @@
     <div class="card flex-fill">
       <div class="card-body">
         <h3 class="h6">Pesquisar</h3>
-        <form method="get" action="#" autocomplete="off">
+        <form method="GET" action="{{ url_for('index') }}">
           <label for="nomePesquisa" class="form-label">Nome</label>
           <input id="nomePesquisa" name="nomePesquisa" class="form-control" type="search" placeholder="Digite o nome">
           <div class="d-grid mt-2">
